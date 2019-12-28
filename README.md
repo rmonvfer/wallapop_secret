@@ -25,5 +25,9 @@ The timestamp can be generated without problems using `time` as follows:
 ```python
 timestamp = str(time.time()).split(".")[0]
 ```
+Interestingly, if you apply 2 times Base64DecodeFromUTF8 to the secret key, the following string is obtained:
+```
+Congrats, you've found it! Are you ready to join us? jobs@wallapop.com
+```
 
 Everything was reverse-engineered using Firefox Devtools, Frida and Charles Proxy
