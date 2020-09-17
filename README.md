@@ -32,3 +32,29 @@ Congrats, you've found it! Are you ready to join us? jobs@wallapop.com
 ```
 
 Everything was reverse-engineered using Firefox Devtools, Frida and Charles Proxy
+
+**Update: ** They migrated to React and reimplemented the signature generation algorithm:
+
+Their new key: "Tm93IHRoYXQgeW91J3ZlIGZvdW5kIHRoaXMsIGFyZSB5b3UgcmVhZHkgdG8gam9pbiB1cz8gam9ic0B3YWxsYXBvcC5jb20=="
+And the new algo:
+```
+const SIGNATURE = 'Tm93IHRoYXQgeW91J3ZlIGZvdW5kIHRoaXMsIGFyZSB5b3UgcmVhZHkgdG8gam9pbiB1cz8gam9ic0B3YWxsYXBvcC5jb20==';
+
+export function getSignature(url, method, timestamp) {
+  try {
+    if (url.includes('registration')) {
+      url = url.split('?')[0];
+    }
+  }
+  catch (e) {}
+  
+  var separator = '|';
+  var signature = [method, url, timestamp].join(separator) + separator;
+
+  return window.CryptoJS.enc.Base64.stringify(window.CryptoJS.HmacSHA256(signature, SIGNATURE));
+}
+```
+The previous python code still works if you change the corresponding key (although I'd directly use their implementation)
+
+As a bonus, the hiring message has also been changed: "Now that you've found this, are you ready to join us? jobs@wallapop.com"
+For more information see issue https://github.com/rmon-vfer/wallapop_secret/issues/1#issuecomment-694163493
