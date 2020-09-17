@@ -37,7 +37,7 @@ Everything was reverse-engineered using Firefox Devtools, Frida and Charles Prox
 
 Their new key: "Tm93IHRoYXQgeW91J3ZlIGZvdW5kIHRoaXMsIGFyZSB5b3UgcmVhZHkgdG8gam9pbiB1cz8gam9ic0B3YWxsYXBvcC5jb20=="
 And the new algo:
-```
+```js
 const SIGNATURE = 'Tm93IHRoYXQgeW91J3ZlIGZvdW5kIHRoaXMsIGFyZSB5b3UgcmVhZHkgdG8gam9pbiB1cz8gam9ic0B3YWxsYXBvcC5jb20==';
 
 export function getSignature(url, method, timestamp) {
