@@ -4,7 +4,14 @@ Wallapop's API X-Signature Generator
 To authenticate requests to Wallapop's REST API you need a client-side generated token, namely X-Signature, generated mangling and hashing the current timestamt with a secret key, HTTP method used and the target endpoint.
 
 The basic token structure is (pseudocode):
-`Base64DecodeFromHex( HMACSHA256( Base64DecodeFromUTF8('UTI5dVozSmhkSE1zSUhsdmRTZDJaU0JtYjNWdVpDQnBkQ0VnUVhKbElIbHZkU0J5WldGa2VTQjBieUJxYjJsdUlIVnpQeUJxYjJKelFIZGhiR3hoY0c5d0xtTnZiUT09'), "/api/v3/{ENDPOINT}+#+{METHOD}+#+{TIMESTAMP}+#+") )`
+```
+Base64DecodeFromHex ( 
+    HMACSHA256 ( 
+        Base64DecodeFromUTF8( KEY ), "/api/v3/{ENDPOINT}+#+{METHOD}+#+{TIMESTAMP}+#+" ) 
+    )
+```
+
+Where `KEY = "UTI5dVozSmhkSE1zSUhsdmRTZDJaU0JtYjNWdVpDQnBkQ0VnUVhKbElIbHZkU0J5WldGa2VTQjBieUJxYjJsdUlIVnpQeUJxYjJKelFIZGhiR3hoY0c5d0xtTnZiUT09"`
 
 A simple python script to automate the signature generation:
 ```python
@@ -35,7 +42,8 @@ Everything was reverse-engineered using Firefox Devtools, Frida and Charles Prox
 
 **Update:** They migrated to React and reimplemented the signature generation algorithm:
 
-New key: "Tm93IHRoYXQgeW91J3ZlIGZvdW5kIHRoaXMsIGFyZSB5b3UgcmVhZHkgdG8gam9pbiB1cz8gam9ic0B3YWxsYXBvcC5jb20=="
+New key: `Tm93IHRoYXQgeW91J3ZlIGZvdW5kIHRoaXMsIGFyZSB5b3UgcmVhZHkgdG8gam9pbiB1cz8gam9ic0B3YWxsYXBvcC5jb20==`
+
 New algo:
 ```js
 const SIGNATURE = 'Tm93IHRoYXQgeW91J3ZlIGZvdW5kIHRoaXMsIGFyZSB5b3UgcmVhZHkgdG8gam9pbiB1cz8gam9ic0B3YWxsYXBvcC5jb20==';
