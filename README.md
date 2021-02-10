@@ -33,7 +33,7 @@ Congrats, you've found it! Are you ready to join us? jobs@wallapop.com
 
 Everything was reverse-engineered using Firefox Devtools, Frida and Charles Proxy
 
-**Update: ** They migrated to React and reimplemented the signature generation algorithm:
+**Update:** They migrated to React and reimplemented the signature generation algorithm:
 
 New key: "Tm93IHRoYXQgeW91J3ZlIGZvdW5kIHRoaXMsIGFyZSB5b3UgcmVhZHkgdG8gam9pbiB1cz8gam9ic0B3YWxsYXBvcC5jb20=="
 New algo:
