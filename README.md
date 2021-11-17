@@ -28,7 +28,7 @@ def generate_xsignature(endpoint, method, timestamp):
     return str(codecs.encode(signature, 'base64').decode()).strip()
 ```
 
-Timestamps can get generated using `time` as follows:
+Timestamps can be generated using `time` as follows:
 ```python
 timestamp = str(time.time()).split(".")[0]
 ```
@@ -58,7 +58,7 @@ export function getSignature(url, method, timestamp) {
   return window.CryptoJS.enc.Base64.stringify(window.CryptoJS.HmacSHA256(signature, SIGNATURE));
 }
 ```
-The previous python code still works changing the corresponding key (although I'd rather use their implementation)
+The previous python code still works if you change the corresponding key (although I'd rather use their implementation)
 
 The hiring message has also been changed: "Now that you've found this, are you ready to join us? jobs@wallapop.com"
 For more information see issue https://github.com/rmon-vfer/wallapop_secret/issues/1#issuecomment-694163493
